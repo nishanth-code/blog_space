@@ -1,4 +1,6 @@
 const { string } = require('joi');
+const blog = require('blogSchema')
+const credential = require('credentialsSchema')
 const mongoose = require('mongoose')
 const schema = mongoose.Schema;
  
@@ -7,9 +9,9 @@ const profileScema = new schema({
     userName: String,
     gitURL: String,
     linkedInURL: String,
-    credentials:{},
+    credentials:{ type:schema.Types.ObjectId , ref:'credential'},
     blogs:[
-        {}
+        {type: schema.Types.ObjectId, ref: 'blog'}
     ],
 
 })
