@@ -9,15 +9,15 @@ const path = require('path')
 
 // connection to database (mongo)
 
-// mongoose.connect('mongodb://localhost:27017/yelp',{
-// useNewUrlParser: true,
-// useUnifiedTopology: true
-// });
-// const db = mongoose.connection;
-// db.on('error',console.error.bind('connection error:'))
-// db.once("open",() => {
-//     console.log("db connected")
-// });
+mongoose.connect('mongodb+srv://nishanth:nish1234@cluster0.bbodeek.mongodb.net/blogSpace',{
+useNewUrlParser: true,
+useUnifiedTopology: true
+});
+const db = mongoose.connection;
+db.on('error',console.error.bind('connection error:'))
+db.once("open",() => {
+    console.log("db connected")
+});
 
 // prerequisite settings
 
