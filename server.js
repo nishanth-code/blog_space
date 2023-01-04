@@ -43,12 +43,12 @@ passport.deserializeUser(credential.deserializeUser())
 
 //routes for server
 
-// app.get('/', async(req,res) =>{
-//      const user = new credential({username:'nishanth'})
-//      const registerdUser = await credential.register(user,'nish@9741')
-//      await registeredUser.save()
-//      res.send(registerdUser)
-// })
+app.get('/', async(req,res) =>{
+     const user = new credential({username:'nishanth2'})
+     const registerdUser = await credential.register(user,'nish@9741')
+     await registerdUser.save()
+     res.send(registerdUser)
+})
 
 
 // setting mac port for server communication
