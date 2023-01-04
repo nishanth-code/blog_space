@@ -44,10 +44,13 @@ passport.deserializeUser(credential.deserializeUser())
 //routes for server
 
 app.get('/', async(req,res) =>{
-     const user = new credential({username:'nishanth2'})
-     const registerdUser = await credential.register(user,'nish@9741')
-     await registerdUser.save()
-     res.send(registerdUser)
+    //  const user = new credential({username:'nishanth2'})
+    //  const registerdUser = await credential.register(user,'nish@9741')
+    //  await registerdUser.save()
+    //  res.send(registerdUser)
+    // const users = await credential.find()
+    // console.log(users)
+    // res.send('sucess')
 })
 
 
