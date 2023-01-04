@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const schema = mongoose.Schema;a 
+const schema = mongoose.Schema;
 const credentialScema = new schema({
     username:String,
     password:String
