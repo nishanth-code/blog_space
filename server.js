@@ -29,6 +29,12 @@ app.use(express.urlencoded({ extended : true }))
 app.use(methodOverride('_method'))
 mongoose.set('strictQuery', true);
 
+//routes for server
+
+app.get('/',(req,res) =>{
+    res.send('sucess rex')
+})
+
 
 // setting mac port for server communication
 app.listen(3000,() =>{
