@@ -7,6 +7,8 @@ const ejsMate = require('ejs-mate')
 const methodOverride = require('method-override')
 const path = require('path')
 const passport = require('passport')
+const passporLocal = require('passport-local')
+const credential = require('schemas/credentialSchema')
 
 // connection to database (mongo)
 
@@ -29,10 +31,22 @@ app.use(express.urlencoded({ extended : true }))
 app.use(methodOverride('_method'))
 mongoose.set('strictQuery', true);
 
+app.use(passport.initialize())
+app.use(passport.session())
+passport.use(credential.authenticate())
+passport.serializeUser(credential.serializeUser())
+passport.deserializeUser(credential.deserializeUser())
+
+
+
+
 //routes for server
 
-app.get('/',(req,res) =>{
-    res.send('sucess rex')
+app.get('/', async(req,res) =>{
+     const user = new credential({username:'nishanth'})
+     const registerdUser = await credential.register(user,'nish@9741')
+     await registeredUser.save()
+     res.send(registerdUser)
 })
 
 
