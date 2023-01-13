@@ -26,7 +26,7 @@ db.once("open",() => {
 
 app.set('view engine','ejs')
 app.engine('ejs',ejsMate)
-app.set('views',path.join(__dirname,'views'))
+app.set('views',path.join(__dirname,'veiws'))
 app.use(express.urlencoded({ extended : true }))
 app.use(methodOverride('_method'))
 mongoose.set('strictQuery', true);
@@ -51,6 +51,7 @@ app.get('/', async(req,res) =>{
     // const users = await credential.find()
     // console.log(users)
     // res.send('sucess')
+    res.render('./author.ejs')
 })
 
 
