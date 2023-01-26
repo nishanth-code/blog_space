@@ -25,12 +25,12 @@ db.once("open",() => {
 });
 const sessionDetails = {
     secret: 'userCredentials',
-    ressave: false,
+    resave: false,
     saveUninitialized: true,
-    Cookie:{
+    cookie:{
         httpOnly: true,
-        expires: Date.now() + 1000*60*60*24,
-        maxAge: 1000*60*60*24,
+        expires: Date.now() + (1000*60*60*24),
+        maxAge: 1000*60*60*24
     }
 }
 
@@ -66,6 +66,12 @@ app.get('/index',(req,res) =>{
 app.post('/register',(req,res)=>{
     res.render('.')
 })
+
+app.get('/logout',(req,res) =>{
+    req.logout(()=>{
+    res.redirect('/index')
+    })
+}) 
 
 app.get('/', async(req,res) =>{
     //  const user = new credential({username:'nishanth2'})
