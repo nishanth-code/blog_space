@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>profile</title>
+    
+</head>
+<body>
+    <nav
+    class="flex items-center justify-between flex-wrap bg-slate-100 py-4 lg:px-12 shadow border-solid border-t-2 border-blue-700">
+    <div class="flex justify-between lg:w-auto w-full lg:border-b-0 pl-6 pr-2 border-solid border-b-2 border-gray-300 pb-5 lg:pb-0">
+        <div class="flex items-center flex-shrink-0 text-gray-800 mr-16">
+            <span class="font-semibold tracking-tight text-3xl">Blogspace</span>
+        </div>
+        <div class="block lg:hidden ">
+            <button
+                id="nav"
+                class="flex items-center px-3 py-2 border-2 rounded text-blue-700 border-blue-700 hover:text-blue-700 hover:border-blue-700">
+            </button>
+        </div>
+    </div>
+
+    <div class="menu w-full  flex-grow lg:flex lg:items-center lg:w-auto lg:px-3 px-8">
+        <div class="text-md font-bold text-blue-700 lg:flex-grow">
+            <a href="#home"
+               class="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2">
+                Home
+            </a>
+            <a href="#profile"
+               class=" block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2">
+                Profile
+            </a>
+            <a href="#"
+               class="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:bg-blue-700 mr-2">
+                post
+            </a>
+        </div>
+       
+        <div class="relative mx-auto text-gray-600 lg:block hidden">
+            <input
+                class="border-2 border-gray-300 bg-white h-10 pl-2 pr-8 rounded-lg text-sm focus:outline-none "
+                type="search" name="search" placeholder="Search">
+            <button type="submit" class="absolute right-0 top-0 mt-3 mr-2"><span class="fa-solid fa-magnifying-glass"></span></button>
+        </div>
+        <div class="flex ">
+            <a href="#"
+               class="block text-md px-4 py-2 rounded text-blue-700 ml-2 font-bold hover:text-white mt-4 hover:bg-blue-700 lg:mt-0">Sign
+                in</a>
+
+            <a href="#"
+               class=" block text-md px-4  ml-2 py-2 rounded text-blue-700 font-bold hover:text-white mt-4 hover:bg-blue-700 lg:mt-0">login</a>
+        </div>
+    </div>
+</nav>
+<br/>
+<!-- profile page starts from here  -->
+<div class="p-16 bg-blue-600 border-blue-700">
+    <div class="p-8 bg-white border-blue-700 shadow mt-24 rounded-lg">
+      <div class="grid grid-cols-1 md:grid-cols-3  justify-center">
+        <div></div>
+        <div class="relative flex items-center py-6">
+          <div class="  w-48 h-48 bg-blue-200  mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
+            <img class=" w-48 h-48 bg-blue-200  mx-auto rounded-full " src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt="user_image">
+          </div>
+        </div>
+      </div>
+    
+      <div class="mt-20 text-center border-b pb-12">
+        <!-- DISPLAY NAME -->
+        <h1 class="text-4xl font-medium text-gray-700">Nishanth v, <span class="font-light text-gray-500">20</span></h1>
+        <!-- DISPLAY LOCATION IF REQUIRED -->
+        <p class="font-light text-gray-600 mt-3">India, banglore</p>
+        <!-- DISPLAY WORK  -->
+        <p class="mt-8 text-gray-500">Developer- @Drait</p>
+        <p class="mt-2 text-gray-500">Dr ambedkar institute of technology - vtu</p>
+      </div>
+      <!-- DESCRIPTION -->
+      <div class="mt-12 flex flex-col justify-center">
+        <p class="text-gray-600 text-center font-light lg:px-16">Description<br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident sed recusandae tempore commodi temporibus culpa fuga esse aliquid quae aperiam maiores reprehenderit nemo non nam aspernatur deleniti, corrupti, a quia. </p>
+      </div>
+      <br>
+      <div class="text-center">
+        <h1 class="text-2xl">MY POSTS</h1>
+        <!-- POST HERE TAKE FROM DB AND DISPLAY HERE -->
+    </div>
+    </div>
+</div>
+</body>
+</html>
