@@ -8,7 +8,9 @@ const methodOverride = require('method-override')
 const path = require('path')
 const passport = require('passport')
 const localStrategy = require('passport-local')
-const credential = require('./schemas/credentialsSchema')
+const session = require('express-session')
+const credential = require('./schemas/credentialsSchema');
+const { Cookie } = require('express-session');
 
 // connection to database (mongo)
 
@@ -21,6 +23,16 @@ db.on('error',console.error.bind('connection error:'))
 db.once("open",() => {
     console.log("db connected")
 });
+const sessionDetails = {
+    secret: 'userCredentials',
+    ressave: false,
+    saveUninitialized: true,
+    Cookie:{
+        httpOnly: true,
+        expires: Date.now() + 1000*60*60*24,
+        maxAge: 1000*60*60*24,
+    }
+}
 
 // prerequisite settings
 
@@ -29,6 +41,7 @@ app.engine('ejs',ejsMate)
 app.set('views',path.join(__dirname,'views'))
 app.use(express.urlencoded({ extended : true }))
 app.use(methodOverride('_method'))
+app.use(session(sessionDetails))
 mongoose.set('strictQuery', true);
 
 app.use(passport.initialize())
