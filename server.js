@@ -26,7 +26,7 @@ db.once("open",() => {
 
 app.set('view engine','ejs')
 app.engine('ejs',ejsMate)
-app.set('views',path.join(__dirname,'veiws'))
+app.set('views',path.join(__dirname,'views'))
 app.use(express.urlencoded({ extended : true }))
 app.use(methodOverride('_method'))
 mongoose.set('strictQuery', true);
@@ -42,6 +42,17 @@ passport.deserializeUser(credential.deserializeUser())
 
 
 //routes for server
+app.get('/signup',(req,res) =>{
+    res.render('./signup.ejs')
+})
+
+app.get('/index',(req,res) =>{
+    res.render('./index.ejs')
+})
+
+app.post('/register',(req,res)=>{
+    res.render('.')
+})
 
 app.get('/', async(req,res) =>{
     //  const user = new credential({username:'nishanth2'})
@@ -51,7 +62,7 @@ app.get('/', async(req,res) =>{
     // const users = await credential.find()
     // console.log(users)
     // res.send('sucess')
-    res.render('./author.ejs')
+    res.render('./login.ejs')
 })
 
 
