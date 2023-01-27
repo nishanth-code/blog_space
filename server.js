@@ -36,6 +36,11 @@ const sessionDetails = {
 }
 
 // prerequisite settings
+app.use((req,res,next)=>{
+    console.log(req.user);
+    res.locals.currentUser = req.user;
+    next();
+})
 
 app.set('view engine','ejs')
 app.engine('ejs',ejsMate)
@@ -44,10 +49,7 @@ app.use(express.urlencoded({ extended : true }))
 app.use(methodOverride('_method'))
 app.use(session(sessionDetails))
 mongoose.set('strictQuery', true);
-app.use((req,res,next)=>{
-    res.locals.currentUser = req.user;
-    next();
-})
+
 
 app.use(passport.initialize())
 app.use(passport.session())
@@ -65,7 +67,7 @@ app.get('/signup',(req,res) =>{
 })
 
 app.get('/index',(req,res) =>{
-    
+    console.log(req.user)
     res.render('./index.ejs')
 })
 
@@ -73,13 +75,13 @@ app.post('/register',(req,res)=>{
     res.render('.')
 })
 app.post('/authenticate',passport.authenticate('local',{failureRedirect:'/'}),(req,res)=>{
-  console.log(req.user)
+//   console.log(req.user)
   res.redirect('/index')
 })
 
 app.get('/logout',(req,res) =>{
     req.logout(()=>{
-    res.redirect('/index')
+    res.redirect('/')
     })
 }) 
 
