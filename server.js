@@ -18,6 +18,7 @@ mongoose.connect('mongodb+srv://nishanth:nish1234@cluster0.bbodeek.mongodb.net/b
 useNewUrlParser: true,
 useUnifiedTopology: true
 });
+
 const db = mongoose.connection;
 db.on('error',console.error.bind('connection error:'))
 db.once("open",() => {
@@ -43,9 +44,12 @@ app.use(express.urlencoded({ extended : true }))
 app.use(methodOverride('_method'))
 app.use(session(sessionDetails))
 mongoose.set('strictQuery', true);
+app.use((req,res,next)=>{
+    res.locals.currentUser = req.user;
+})
 
 app.use(passport.initialize())
-// app.use(passport.session())
+app.use(passport.session())
 passport.use(new localStrategy(credential.authenticate()))
 
 passport.serializeUser(credential.serializeUser())
@@ -68,6 +72,7 @@ app.post('/register',(req,res)=>{
     res.render('.')
 })
 app.post('/authenticate',passport.authenticate('local',{failureRedirect:'/'}),(req,res)=>{
+  console.log(req.user)
   res.redirect('/index')
 })
 
