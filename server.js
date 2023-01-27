@@ -66,6 +66,9 @@ app.get('/index',(req,res) =>{
 app.post('/register',(req,res)=>{
     res.render('.')
 })
+app.post('/authenticate',passport.authenticate('local',{failureRedirect:'/'}),(req,res)=>{
+  res.redirect('/index')
+})
 
 app.get('/logout',(req,res) =>{
     req.logout(()=>{
@@ -78,8 +81,8 @@ app.get('/', async(req,res) =>{
     //  const registerdUser = await credential.register(user,'nish@9741')
     //  await registerdUser.save()
     //  res.send(registerdUser)
-    // const users = await credential.find()
-    // console.log(users)
+    const users = await credential.find()
+    console.log(users)
     // res.send('sucess')
     res.render('./login.ejs')
 })
