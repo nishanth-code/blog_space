@@ -60,6 +60,7 @@ app.get('/signup',(req,res) =>{
 })
 
 app.get('/index',(req,res) =>{
+    console.log(req.user)
     res.render('./index.ejs')
 })
 
@@ -77,14 +78,8 @@ app.get('/logout',(req,res) =>{
 }) 
 
 app.get('/', async(req,res) =>{
-    //  const user = new credential({username:'nishanth2'})
-    //  const registerdUser = await credential.register(user,'nish@9741')
-    //  await registerdUser.save()
-    //  res.send(registerdUser)
-    const users = await credential.find()
-    console.log(users)
-    // res.send('sucess')
-    res.render('./login.ejs')
+    
+     res.render('./login.ejs')
 })
 
 
