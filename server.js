@@ -46,6 +46,7 @@ app.use(session(sessionDetails))
 mongoose.set('strictQuery', true);
 app.use((req,res,next)=>{
     res.locals.currentUser = req.user;
+    next();
 })
 
 app.use(passport.initialize())
@@ -64,7 +65,7 @@ app.get('/signup',(req,res) =>{
 })
 
 app.get('/index',(req,res) =>{
-    console.log(req.user)
+    
     res.render('./index.ejs')
 })
 
