@@ -36,11 +36,7 @@ const sessionDetails = {
 }
 
 // prerequisite settings
-app.use((req,res,next)=>{
-    console.log(req.user);
-    res.locals.currentUser = req.user;
-    next();
-})
+
 
 app.set('view engine','ejs')
 app.engine('ejs',ejsMate)
@@ -58,7 +54,11 @@ passport.use(new localStrategy(credential.authenticate()))
 passport.serializeUser(credential.serializeUser())
 passport.deserializeUser(credential.deserializeUser())
 
-
+app.use((req,res,next)=>{
+    // console.log(req.user);
+    res.locals.currentUser = req.user;
+    next();
+})
 
 
 //routes for server
