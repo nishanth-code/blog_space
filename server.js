@@ -10,6 +10,8 @@ const passport = require('passport')
 const localStrategy = require('passport-local')
 const session = require('express-session')
 const credential = require('./schemas/credentialsSchema');
+const blog = require('./schemas/blogSchema');
+const comments = require('./schemas/commentsSchema');
 const { Cookie } = require('express-session');
 
 // connection to database (mongo)
@@ -55,8 +57,12 @@ passport.serializeUser(credential.serializeUser())
 passport.deserializeUser(credential.deserializeUser())
 
 app.use((req,res,next)=>{
-    // console.log(req.user);
+    
     res.locals.currentUser = req.user;
+    // if(req.user !== undefined){
+    //     User = req.user.username;
+    // }
+    // // console.log(User);
     next();
 })
 
@@ -71,12 +77,22 @@ app.get('/index',(req,res) =>{
     res.render('./index.ejs')
 })
 
+app.get('/index/:id',async(req,res) =>{
+    const blogv = await blog.findById(req.params.id);
+    res.render('./blog_view.ejs',{blogv})
+
+})
+
 app.post('/register',(req,res)=>{
     res.render('.')
 })
 app.post('/authenticate',passport.authenticate('local',{failureRedirect:'/'}),(req,res)=>{
 //   console.log(req.user)
   res.redirect('/index')
+})
+
+app.get('/profile',async(req,res)=>{
+    const profile = await credential.findOne({username : req.user})
 })
 
 app.get('/logout',(req,res) =>{
@@ -87,7 +103,7 @@ app.get('/logout',(req,res) =>{
 
 app.get('/', async(req,res) =>{
     
-     res.render('./login.ejs')
+     res.render('./profile.ejs')
 })
 
 
