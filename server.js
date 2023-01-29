@@ -56,13 +56,16 @@ passport.use(new localStrategy(credential.authenticate()))
 passport.serializeUser(credential.serializeUser())
 passport.deserializeUser(credential.deserializeUser())
 
-app.use((req,res,next)=>{
+app.use(async(req,res,next)=>{
     
     res.locals.currentUser = req.user;
     // if(req.user !== undefined){
     //     User = req.user.username;
     // }
     // // console.log(User);
+    // const testblog = new blog({username:'nishanth', blogMessage:'hello every one this is the test blog'})
+    //  await testblog.save();   
+    // blog.findAndDelete({})
     next();
 })
 
@@ -72,9 +75,9 @@ app.get('/signup',(req,res) =>{
     res.render('./signup.ejs')
 })
 
-app.get('/index',(req,res) =>{
-    console.log(req.user)
-    res.render('./index.ejs')
+app.get('/index',async(req,res) =>{
+    const blogs = await blog.find({})
+    res.render('./index.ejs',{blogs})
 })
 
 app.get('/index/:id',async(req,res) =>{
@@ -93,8 +96,8 @@ app.post('/authenticate',passport.authenticate('local',{failureRedirect:'/'}),(r
   res.redirect('/index')
 })
 
-app.get('/profile',async(req,res)=>{
-    const profile = await credential.findOne({username:req.user.username})
+app.get('/profile/:username',async(req,res)=>{
+    const profile = await credential.findOne({username:req.params.username})
     res.render('./profile.ejs',{profile})
 
 })
