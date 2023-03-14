@@ -86,10 +86,12 @@ app.get('/index/:id',async(req,res) =>{
 
 })
 
+app.get('')
+
 app.post('/register',async(req,res)=>{
     const newUser = new credential(req.body.user)
     const registeredUser = await credential.register(newUser,req.body.password)
-    res.send(registeredUser);
+    res.redirect('/');
 })
 app.post('/authenticate',passport.authenticate('local',{failureRedirect:'/'}),(req,res)=>{
 //   console.log(req.user)

@@ -1,12 +1,8 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>comment</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
+<%- include('./boilerplate/header.ejs') %> 
+
 <body>
+   <%- include('./boilerplate/navbar.ejs') %> 
+
     <div class="flex mx-auto items-center  border-blue-400 justify-center shadow-lg mt-56  mb-4 max-w-lg">
         <form class="w-full max-w-xl  bg-white rounded-lg px-4 pt-2" method="">
            <div class="flex flex-wrap -mx-3 mb-6">
@@ -16,7 +12,7 @@
               </div>
               <div class="w-full md:w-full flex items-stretch  px-3">
                  <div class="-mr-1">
-                    <button type='submit' class="bg-white text-gray-700 font-medium py-1 px-4 border border-blue-400 rounded-lg tracking-wide mr-1 hover:text-white hover:border-blue-700 hover:bg-blue-700">Comment</button>
+                   <a href="/"> <button type='submit' class="bg-white text-gray-700 font-medium py-1 px-4 border border-blue-400 rounded-lg tracking-wide mr-1 hover:text-white hover:border-blue-700 hover:bg-blue-700">Comment</button></a>
                  </div>
               </div>
            </form>
