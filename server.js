@@ -13,6 +13,7 @@ const credential = require('./schemas/credentialsSchema');
 const blog = require('./schemas/blogSchema');
 const comments = require('./schemas/commentsSchema');
 const { Cookie } = require('express-session');
+const { findOne } = require('./schemas/commentsSchema');
 
 // connection to database (mongo)
 
@@ -99,8 +100,22 @@ app.post('/authenticate',passport.authenticate('local',{failureRedirect:'/'}),(r
 })
 
 app.get('/profile/:username',async(req,res)=>{
-    const profile = await credential.findOne({username:req.params.username})
+    const profile = await credential.findOne({username:req.params.username}).populate('blogs')
+    console.log(profile)
     res.render('./profile.ejs',{profile})
+
+})
+app.post('/post/blog',async(req,res)=>{
+    const user  = req.user;
+    const {username} = user
+    console.log(user.username)
+    const Newblog = new blog({username: username,blogMessage: req.body.message})
+    const profile = await credential.findOne({username:username})
+    console.log(Newblog,profile)
+    profile.blogs.push(Newblog)
+    await Newblog.save();
+    await profile.save();
+    res.redirect('/index')
 
 })
 
