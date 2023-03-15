@@ -56,10 +56,15 @@ passport.use(new localStrategy(credential.authenticate()))
 
 passport.serializeUser(credential.serializeUser())
 passport.deserializeUser(credential.deserializeUser())
-
-app.use(async(req,res,next)=>{
+app.post('/authenticate',passport.authenticate('local',{failureRedirect:'/'}),(req,res)=>{
+    //   console.log(req.user)
+    res.locals.currentUser = req.user.username;
+      res.redirect('/index')
+    })
     
-    res.locals.currentUser = req.user;
+app.use(async(req,res,next)=>{
+    res.locals.currentUser = req.user
+   
     // if(req.user !== undefined){
     //     User = req.user.username;
     // }
@@ -93,10 +98,6 @@ app.post('/register',async(req,res)=>{
     const newUser = new credential(req.body.user)
     const registeredUser = await credential.register(newUser,req.body.password)
     res.redirect('/');
-})
-app.post('/authenticate',passport.authenticate('local',{failureRedirect:'/'}),(req,res)=>{
-//   console.log(req.user)
-  res.redirect('/index')
 })
 
 app.get('/profile/:username',async(req,res)=>{
