@@ -144,6 +144,6 @@ app.get('/', async(req,res) =>{
 
 
 // setting mac port for server communication
-app.listen(3000,() =>{
+app.listen(4000,() =>{
     console.log('connection set')
 })

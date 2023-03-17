@@ -52,6 +52,7 @@
         </div>
       </div>
       <h3> comments</h3>
+      <% for( let index = 0; index < blogv.comments.length; index++ ) { %>
       <div class=" w-full h-fit flex flex-col">
         <div class="flex flex-row ml-10 py-2 ">
           <img
@@ -60,16 +61,17 @@
           alt="user_image"
         />
         <div class="mt-2 mx-2  ">
-          <a href="/profile/<%=blogv.username %>" class="font-semibold text-gray-700 hover:underline">
-            <%=blogv.username %>
+          <a href="/profile/<%=blogv.coments[index].username %>" class="font-semibold text-gray-700 hover:underline">
+            <%=blogv.coments[index].username %>
           </a>
           <!-- <span class="mx-1 text-xs text-gray-600">date haku</span> -->
         </div>
          
         </div>
-        <p class="mx-12 mb-4 ">nsajklfhsajkfhjsaghdjkash dljshadjl asljdjkas hdjkasjk dhasjkd jaskdn l</p>
+        <p class="mx-12 mb-4 "><%=blogv.coments[index].comment %></p>
       </div>
       <hr class="border border-t-2xl ">
+      <% } %>
 </div>
 </div>
 </div> 
