@@ -1,5 +1,5 @@
 <%- include('./boilerplate/header.ejs') %> 
-<body class=" bg-blue-700 flex flex-col min-h-screen">
+<body class=" bg-gradient-to-l from-sky-400 to-purple-600 flex flex-col min-h-screen">
   <%- include('./boilerplate/navbar.ejs') %> 
 <!-- 
 <div class="py-6">
@@ -18,7 +18,7 @@
 <section class="flex flex-row flex-wrap justify-center px-24  ">
     <!-- Card start -->
     <% for( let index = 0; index < blogs.length; index++ ) { %>
-      <div class="transition-all duration-150 flex w-full px-3  py-6 md:w-1/2 lg:w-1/3 ">
+      <div class="transition-all duration-150  w-96 h-96 px-3  py-6 md:w-1/2 lg:w-1/3 ">
         <div class="flex flex-col items-stretch min-h-full pt-2 pb-4 mb-6 transition-all duration-150 bg-white rounded-lg shadow-lg hover:shadow-2xl">
           
           
@@ -41,13 +41,17 @@
               </div>
               <p class="mt-1 text-xs text-gray-600">time read ago</p>
             </div>
-            <p class="flex flex-row flex-wrap w-full px-4 py-2 overflow-hidden text-sm text-justify text-gray-700">
+            <p class="flex flex-row flex-wrap w-full px-4 py-6 overflow-hidden text-sm text-justify text-gray-700">
               <%= blogs[index].blogMessage %> 
             </p>
-            <form class="flex justify-center my-2" action="./index/<%= blogs[index].id%>" method="">
-                <button type="submit" class=" inline-block px-6 py-2.5 bg-teal-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">comment</button>
-            </form>
-        </div>
+            <div class="relative ">
+              <div class=" inset-y-0 bottom-0 left-0 right-0  justify-center items-end">
+                <form class="flex justify-center my-2" action="./index/<%= blogs[index].id%>" method="">
+                  <button type="submit" class="inline-block px-6 py-2.5 bg-teal-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">comment</button>
+                </form>
+              </div>
+            </div>
+            </div>
         </div>
       </div>
       
