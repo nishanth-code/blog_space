@@ -15,10 +15,10 @@
 
 
 
-<section class="flex flex-row flex-wrap justify-center px-24  ">
+<section class="flex flex-row flex-wrap justify-center px-24 mb-[230px] ">
     <!-- Card start -->
     <% for( let index = 0; index < blogs.length; index++ ) { %>
-      <div class="transition-all duration-150  w-96 h-96 px-3  py-6 md:w-1/2 lg:w-1/3 ">
+      <div class="transition-all duration-150 w-96 h-96 px-3  py-6 md:w-1/2 lg:w-1/3 ">
         <div class="flex flex-col items-stretch min-h-full pt-2 pb-4 mb-6 transition-all duration-150 bg-white rounded-lg shadow-lg hover:shadow-2xl">
           
           
@@ -36,10 +36,10 @@
                   <a href="profile/<%= blogs[index].username %> " class="font-semibold text-gray-700 hover:underline">
                     <%= blogs[index].username %> 
                   </a>
-                  <span class="mx-1 text-xs text-gray-600">date haku</span>
+                  <!-- <span class="mx-1 text-xs text-gray-600">date haku</span> -->
                 </div>
               </div>
-              <p class="mt-1 text-xs text-gray-600">time read ago</p>
+              <!-- <p class="mt-1 text-xs text-gray-600">time read ago</p> -->
             </div>
             <p class="flex flex-row flex-wrap w-full px-4 py-6 overflow-hidden text-sm text-justify text-gray-700">
               <%= blogs[index].blogMessage %> 
@@ -61,7 +61,7 @@
 <!-- this is the post form -->
 
 
-<div class="px-8 py-2 ">
+<div class="px-6 py-2 mb-[70px] fixed w-full bottom-0 left-0">
   <form action="/post/blog" method="post">
     <div class="bg-white p-4 rounded-lg shadow-md px-4">
       <div class="text-gray-700 font-medium text-lg mb-4 flex justify-center "><h1 class="text-3xl" > Write your post here!!</h1></div>
