@@ -124,7 +124,7 @@ app.post('/post/blog',async(req,res)=>{
 app.post('/comment/:id',async(req,res)=>{
     const currentBlog = await blog.findById(req.params.id)
     const {username} = req.user
-    const newComment = new comments({username:username,comment:'test comment'})//req.body.comment
+    const newComment = new comments({username:username,comment:req.body.comment})//req.body.comment
     currentBlog.comments.push(newComment)
     await newComment.save()
     await currentBlog.save()
