@@ -65,13 +65,7 @@ app.post('/authenticate',passport.authenticate('local',{failureRedirect:'/'}),(r
 app.use(async(req,res,next)=>{
     res.locals.currentUser = req.user
    
-    // if(req.user !== undefined){
-    //     User = req.user.username;
-    // }
-    // // console.log(User);
-    // const testblog = new blog({username:'nishanth', blogMessage:'hello every one this is the test blog'})
-    //  await testblog.save();   
-    // blog.findAndDelete({})
+   
     next();
 })
 
@@ -87,12 +81,13 @@ app.get('/index',async(req,res) =>{
 })
 
 app.get('/index/:id',async(req,res) =>{
-    const blogv = await blog.findById(req.params.id);
+    const blogv = await blog.findById(req.params.id).populate('comments');
+    console.log(blogv)
     res.render('./blog_view.ejs',{blogv})
 
 })
 
-app.get('')
+
 
 app.post('/register',async(req,res)=>{
     const newUser = new credential(req.body.user)
@@ -101,8 +96,14 @@ app.post('/register',async(req,res)=>{
 })
 
 app.get('/profile/:username',async(req,res)=>{
-    const profile = await credential.findOne({username:req.params.username}).populate('blogs')
-    console.log(profile.blogs)
+    const profile = await credential.findOne({username:req.params.username}).populate({
+        path:'blogs',
+        populate:{
+            path:'comments'    
+        }
+    })
+    // profile.blogs.populate('comments')
+    console.log(profile.blogs[0].blogMessage)
     res.render('./profile.ejs',{profile})
 })
 
@@ -120,6 +121,15 @@ app.post('/post/blog',async(req,res)=>{
     res.redirect('/index')
 
 })
+app.post('/comment/:id',async(req,res)=>{
+    const currentBlog = await blog.findById(req.params.id)
+    const {username} = req.user
+    const newComment = new comments({username:username,comment:'test comment'})//req.body.comment
+    currentBlog.comments.push(newComment)
+    await newComment.save()
+    await currentBlog.save()
+    res.redirect('/index')
+})
 
 app.get('/logout',(req,res) =>{
     req.logout(()=>{
@@ -134,6 +144,6 @@ app.get('/', async(req,res) =>{
 
 
 // setting mac port for server communication
-app.listen(5000,() =>{
+app.listen(4000,() =>{
     console.log('connection set')
 })
