@@ -1,9 +1,9 @@
 <%- include('./boilerplate/header.ejs') %> 
-<body class="bg-gradient-to-l from-sky-400 to-purple-600">
+<body class="">
     <%- include('./boilerplate/navbar.ejs') %> 
 <br/>
 <!-- profile page starts from here  -->
-<div class="p-16 bg-blue-600 border-blue-700">
+<div class="p-16 bg-gradient-to-l from-sky-400 to-purple-600">
     <div class="p-8 bg-white border-blue-700 shadow mt-24 rounded-lg">
       <div class="grid grid-cols-1 md:grid-cols-3  justify-center">
         <div></div>
@@ -16,26 +16,62 @@
     
       <div class="mt-20 text-center border-b pb-12">
         <!-- DISPLAY NAME -->
-        <h1 class="text-4xl font-medium text-gray-700"><%= %> <span class="font-light text-gray-500">20</span></h1>
+        <h1 class="text-4xl font-medium text-gray-700"><%= profile.username %> </h1>
+        <p class="text-1xl font-medium text-gray-700"><%= profile.email %> </p>
+
         <!-- DISPLAY LOCATION IF REQUIRED -->
-        <p class="font-light text-gray-600 mt-3">India, banglore</p>
-        <!-- DISPLAY WORK  -->
-        <p class="mt-8 text-gray-500">Developer- @Drait</p>
-        <p class="mt-2 text-gray-500">Dr ambedkar institute of technology - vtu</p>
+        <!-- <p class="font-light text-gray-600 mt-3">India, banglore</p>
+     DISPLAY WORK  -->
+        <!-- <p class="mt-8 text-gray-500">Developer- @Drait</p>
+        <p class="mt-2 text-gray-500">Dr ambedkar institute of technology - vtu</p> --> 
       </div>
       <!-- DESCRIPTION -->
-      <div class="mt-12 flex flex-col justify-center">
+      <!-- <div class="mt-12 flex flex-col justify-center">
         <p class="text-gray-600 text-center font-light lg:px-16">Description<br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident sed recusandae tempore commodi temporibus culpa fuga esse aliquid quae aperiam maiores reprehenderit nemo non nam aspernatur deleniti, corrupti, a quia. </p>
-      </div>
+      </div> -->
       <br>
       <div class="text-center">
         <h1 class="text-2xl">MY POSTS</h1>
         <!-- POST HERE TAKE FROM DB AND DISPLAY HERE -->
+        <% for( let index = 0; index < profile.length; index++ ) { %>
+          <div class="transition-all duration-150  w-96 h-96 px-3  py-6 md:w-1/2 lg:w-1/3 ">
+            <div class="flex flex-col items-stretch min-h-full pt-2 pb-4 mb-6 transition-all duration-150 bg-white rounded-lg shadow-lg hover:shadow-2xl">
+              <div class="px-5 py-2 mt-2 ">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center flex-1">
+                    <img
+                      class="object-cover h-10 rounded-full"
+                      src="https://thumbs.dreamstime.com/b/default-avatar-photo-placeholder-profile-icon-eps-file-easy-to-edit-default-avatar-photo-placeholder-profile-icon-124557887.jpg"
+                      alt="user_image"
+                    />
+                    <div class="flex flex-col mx-2  ">
+                      <!-- <a href="profile/<%= profile[index].username %> " class="font-semibold text-gray-700 hover:underline">
+                        <%= profile[index].username %> 
+                      </a> -->
+                      <span class="mx-1 text-xs text-gray-600">date haku</span>
+                    </div>
+                  </div>
+                  <p class="mt-1 text-xs text-gray-600">time read ago</p>
+                </div>
+                <p class="flex flex-row flex-wrap w-full px-4 py-6 overflow-hidden text-sm text-justify text-gray-700">
+                  <%= profile[index].blogMessage %> 
+                </p>
+                <div class="relative ">
+                  <div class=" inset-y-0 bottom-0 left-0 right-0  justify-center items-end">
+                    <form class="flex justify-center my-2" action="./index/<%= profile[index].id%>" method="">
+                      <button type="submit" class="inline-block px-6 py-2.5 bg-teal-400 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">comment</button>
+                    </form>
+                  </div>
+                </div>
+                </div>
+            </div>
+          </div>
+          <% } %>
     </div>
     </div>
 </div>
 </body>
-<footer class="mt-auto">
+<footer class=" mt-auto">
     <div class="px-10 py-8 bg-slate-100 ">
         <p class="text-gray-400 text-center">By Nishanth and Mehul &copy;copyright reserved 2023 </p>
     </div>

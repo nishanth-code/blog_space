@@ -102,10 +102,11 @@ app.post('/register',async(req,res)=>{
 
 app.get('/profile/:username',async(req,res)=>{
     const profile = await credential.findOne({username:req.params.username}).populate('blogs')
-    console.log(profile)
+    console.log(profile.blogs)
     res.render('./profile.ejs',{profile})
-
 })
+
+
 app.post('/post/blog',async(req,res)=>{
     const user  = req.user;
     const {username} = user
@@ -133,6 +134,6 @@ app.get('/', async(req,res) =>{
 
 
 // setting mac port for server communication
-app.listen(3000,() =>{
+app.listen(5000,() =>{
     console.log('connection set')
 })
