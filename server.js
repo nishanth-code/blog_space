@@ -128,7 +128,7 @@ app.post('/comment/:id',async(req,res)=>{
     currentBlog.comments.push(newComment)
     await newComment.save()
     await currentBlog.save()
-    res.redirect('/index')
+    res.redirect(`/index/${currentBlog.id}`)
 })
 
 app.get('/logout',(req,res) =>{
