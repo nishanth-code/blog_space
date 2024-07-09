@@ -17,7 +17,7 @@ const { findOne } = require('./schemas/commentsSchema');
 
 // connection to database (mongo)
 
-mongoose.connect('mongodb+srv://nishanth:nish1234@cluster0.bbodeek.mongodb.net/blogSpace',{
+mongoose.connect('mongodb+srv://nishanth:NIsh9741@cluster0.bbodeek.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/blogSpace',{
 useNewUrlParser: true,
 useUnifiedTopology: true
 });
